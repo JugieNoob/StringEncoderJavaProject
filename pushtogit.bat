@@ -1,4 +1,4 @@
-@echo off
+@echo on
 git init
 git add .
 set /p NameOfCommit=What what you like to name your commit?
