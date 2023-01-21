@@ -5,7 +5,7 @@ git add .
 git pull
 set /p NameOfCommit=What what you like to name your commit?
 git commit -m "%NameOfCommit%"
-git push
+git push origin main
 echo "Committed to Github!"
 echo "Press ENTER to close this window!"
 set /p EnterToClose=
