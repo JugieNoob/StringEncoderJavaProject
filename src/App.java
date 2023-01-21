@@ -27,7 +27,7 @@ public class App {
     static JTextField inputfield;
     static JTextField outputfield;
     static JComboBox dropdownmenu;
-    static String[] choices = {"Base64",  "Decimal ASCII"};
+    static String[] choices = {"Base64",  "Decimal ASCII", "Binary"};
     static void makeWindow()
     {
         JPanel window = new JPanel();
@@ -65,7 +65,7 @@ public class App {
 
         copybtn = new JButton("Copy To Clipboard");
         copybtn.setPreferredSize(new Dimension(100, 100));
-        copybtn.setBounds(50, 325, 100, 100);
+        copybtn.setBounds(300, 250, 50, 50);
         copybtn.setFont(new Font(copybtn.getFont().getName(), Font.BOLD, 10));
 
         inputfield = new JTextField();
@@ -152,6 +152,23 @@ public class App {
             case "Decimal ASCII":
                 System.out.println("String: " + text +  "\n" + "Output: " + text.chars().boxed().collect(Collectors.toList()) + "\n" + "Encoder: " + selectedchoice);
                 outputfield.setText("" + text.chars().boxed().collect(Collectors.toList()));
+                break;
+            case "Binary":
+                byte[] stringbytes = text.getBytes();
+                StringBuilder convertedbinary = new StringBuilder();
+
+                for (byte b : stringbytes) {
+                    int value = b;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        convertedbinary.append((value & 128) == 0 ? 0 : 1);
+                        value <<= 1;
+                    }
+                    convertedbinary.append(' ');
+                }
+                
+               outputfield.setText("" + convertedbinary);
+
                 break;
         }
 
