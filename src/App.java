@@ -8,6 +8,8 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 
@@ -25,23 +27,23 @@ public class App {
     static JTextField inputfield;
     static JTextField outputfield;
     static JComboBox dropdownmenu;
-    static String[] choices = {"Base64",  "TEST 2"};
+    static String[] choices = {"Base64",  "Decimal ASCII"};
     static void makeWindow()
     {
         JPanel window = new JPanel();
         window.setPreferredSize(new Dimension(640, 480));
         window.setLayout(null);
 
-        frame = new JFrame("Test window");
-
+        frame = new JFrame("Simple Java Encoder");
+        frame.setResizable(false);
        
         dropdownmenu = new JComboBox<String>(choices);
         dropdownmenu.setBounds(50, 65,200, 25);
         
-        title = new JLabel("Title");
-        title.setBounds(100, 10, 1000, 15);
-        title.setText("Simple Java Encoder");
-        title.setSize(1000, 100);
+        title = new JLabel("Simple Java Encoder");
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 40));
+        title.setBounds(125, 10, 1000, 50);
+
     //    JOptionPane option = new JOptionPane();
 
     
@@ -57,11 +59,14 @@ public class App {
 
         convertbtn = new JButton("Convert");
         convertbtn.setPreferredSize(new Dimension(100, 100));
-        convertbtn.setBounds(300, 175, 50, 50);
+        convertbtn.setBounds(290, 175, 75, 50);
+        convertbtn.setFont(new Font(convertbtn.getFont().getName(), Font.BOLD, 10));
+    
 
         copybtn = new JButton("Copy To Clipboard");
         copybtn.setPreferredSize(new Dimension(100, 100));
-        copybtn.setBounds(300, 250, 50, 50);
+        copybtn.setBounds(50, 325, 100, 100);
+        copybtn.setFont(new Font(copybtn.getFont().getName(), Font.BOLD, 10));
 
         inputfield = new JTextField();
         inputfield.setBounds(50, 100, 200, 200);
@@ -125,18 +130,32 @@ public class App {
     static void convertText(String text)
     {
         String selectedchoice = String.valueOf(dropdownmenu.getSelectedItem());
-        if (selectedchoice == "Base64")
-        {
+/*
+    
+            if (selectedchoice == "Base64")
+            {
             System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + selectedchoice);
             outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
+               }
+            else if (selectedchoice == "Decimal ASCII")
+            {
+            System.out.println("String: " + text +  "\n" + "Output: " + text.chars().boxed().collect(Collectors.toList()) + "\n" + "Encoder: " + selectedchoice);
+            outputfield.setText("" + text.chars().boxed().collect(Collectors.toList()));
         }
-        else if (selectedchoice != "TEST")
+        */
+        switch (selectedchoice) 
         {
-            int ascii = (int) text;
-           byte[] converttobyte = text.getBytes(StandardCharsets.UTF_16);
-           System.out.println("String: " + text +  "\n" + "Output: " + ascii + "\n" + "Encoder: " + selectedchoice);
-           outputfield.setText(ascii);
+            case "Base64":
+                System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + selectedchoice);
+                outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
+                break;
+            case "Decimal ASCII":
+                System.out.println("String: " + text +  "\n" + "Output: " + text.chars().boxed().collect(Collectors.toList()) + "\n" + "Encoder: " + selectedchoice);
+                outputfield.setText("" + text.chars().boxed().collect(Collectors.toList()));
+                break;
         }
+
+           
         
     }
 
