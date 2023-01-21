@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,6 +8,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.util.*;
+
 
 
 public class App {
@@ -21,6 +24,8 @@ public class App {
     static JButton copybtn;
     static JTextField inputfield;
     static JTextField outputfield;
+    static JComboBox dropdownmenu;
+    static String[] choices = {"Base64",  "TEST 2"};
     static void makeWindow()
     {
         JPanel window = new JPanel();
@@ -29,6 +34,9 @@ public class App {
 
         frame = new JFrame("Test window");
 
+       
+        dropdownmenu = new JComboBox<String>(choices);
+        dropdownmenu.setBounds(50, 65,200, 25);
         
         title = new JLabel("Title");
         title.setBounds(100, 10, 1000, 15);
@@ -84,6 +92,7 @@ public class App {
         window.add(outputfield);
         window.add(convertbtn);
         window.add(copybtn);
+        window.add(dropdownmenu);
 
        
     //    frame.add(option);
@@ -115,8 +124,20 @@ public class App {
 
     static void convertText(String text)
     {
-        System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + "Base64");
-        outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
+        String selectedchoice = String.valueOf(dropdownmenu.getSelectedItem());
+        if (selectedchoice == "Base64")
+        {
+            System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + selectedchoice);
+            outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
+        }
+        else if (selectedchoice != "TEST")
+        {
+            int ascii = (int) text;
+           byte[] converttobyte = text.getBytes(StandardCharsets.UTF_16);
+           System.out.println("String: " + text +  "\n" + "Output: " + ascii + "\n" + "Encoder: " + selectedchoice);
+           outputfield.setText(ascii);
+        }
+        
     }
 
     static void copytoclipboard(String text)
