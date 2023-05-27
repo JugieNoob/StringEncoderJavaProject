@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.datatransfer.StringSelection;
-import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.util.*;
 import java.util.stream.Collector;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 
 
-public class App {
+public class main {
     
     public static void main(String[] args) throws Exception {
        makeWindow();
@@ -26,12 +25,14 @@ public class App {
     static JButton copybtn;
     static JTextField inputfield;
     static JTextField outputfield;
-    static JComboBox dropdownmenu;
+    static JComboBox<String> dropdownmenu;
     static String[] choices = {"Base64",  "Decimal ASCII", "Binary"};
+
     static void makeWindow()
     {
         JPanel window = new JPanel();
         window.setPreferredSize(new Dimension(640, 480));
+        //window.setBackground(Color.CYAN); Changes the color of the background
         window.setLayout(null);
 
         frame = new JFrame("Simple Java Encoder");
@@ -47,6 +48,10 @@ public class App {
     //    JOptionPane option = new JOptionPane();
 
     
+        inputfield = new JTextField();
+        inputfield.setBounds(50, 100, 200, 200);        
+
+    
         openfile = new JButton("Get Text From File");
         openfile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +59,8 @@ public class App {
             }
         });
         openfile.setPreferredSize(new Dimension(100, 100));
-        openfile.setBounds(300, 100, 50, 50);
+        openfile.setBounds(145 - 70, 325, 140, 35);
+        
 
 
         convertbtn = new JButton("Convert");
@@ -63,19 +69,15 @@ public class App {
         convertbtn.setFont(new Font(convertbtn.getFont().getName(), Font.BOLD, 10));
     
 
-        copybtn = new JButton("Copy To Clipboard");
-        copybtn.setPreferredSize(new Dimension(100, 100));
-        copybtn.setBounds(300, 250, 50, 50);
-        copybtn.setFont(new Font(copybtn.getFont().getName(), Font.BOLD, 10));
-
-        inputfield = new JTextField();
-        inputfield.setBounds(50, 100, 200, 200);
-        
-
         outputfield = new JTextField();
 
         outputfield.setBounds(400, 100, 200, 200);
         outputfield.setEditable(false);
+        
+        copybtn = new JButton("Copy To Clipboard");
+        copybtn.setPreferredSize(new Dimension(100, 100));
+        copybtn.setBounds(500 - 70, 325, 140, 35);
+
 
 
         convertbtn.addActionListener(new ActionListener() {
@@ -129,6 +131,7 @@ public class App {
 
     static void convertText(String text)
     {
+        outputfield.setText("");
         String selectedchoice = String.valueOf(dropdownmenu.getSelectedItem());
 /*
     
@@ -146,30 +149,32 @@ public class App {
         switch (selectedchoice) 
         {
             case "Base64":
-                System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + selectedchoice);
-                outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
+                String base64 = Base64.getEncoder().encodeToString(text.getBytes());
+                System.out.println("String: " + text +  "\n" + "Output: " + base64 + "\n" + "Encoder: " + selectedchoice);
+                outputfield.setText(base64);
                 break;
             case "Decimal ASCII":
-                System.out.println("String: " + text +  "\n" + "Output: " + text.chars().boxed().collect(Collectors.toList()) + "\n" + "Encoder: " + selectedchoice);
-                outputfield.setText("" + text.chars().boxed().collect(Collectors.toList()));
-                break;
-            case "Binary":
-                byte[] stringbytes = text.getBytes();
-                StringBuilder convertedbinary = new StringBuilder();
-
-                for (byte b : stringbytes) {
-                    int value = b;
-                    for (int i = 0; i < 8; i++)
+            int[] asciiarray = new int[text.length()];
+            for (int i = 0; i < text.length(); i++) {
+                var getChar = (text.charAt(i));
+                var asciioutput = (int) getChar;
+                asciiarray[i] = asciioutput;
+                outputfield.setText(outputfield.getText() + " " + asciiarray[i]);
+            }               
+            /*
+              int[] ascii = new int[text.length()];
+                for (byte textbyte : text.getBytes()) {
+                    int value = textbyte;
+                    System.out.println(text.length());
+                    for (int i = 0; i < text.length(); i++) 
                     {
-                        convertedbinary.append((value & 128) == 0 ? 0 : 1);
-                        value <<= 1;
+                        ascii[i] = value;
+                        break;
                     }
-                    convertedbinary.append(' ');
                 }
-                
-               outputfield.setText("" + convertedbinary);
-
+                System.out.println(ascii);
                 break;
+       */
         }
 
            
