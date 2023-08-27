@@ -1,14 +1,12 @@
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
-import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.nio.file.Files;
+import java.io.IOException;
+
+
 
 
 
@@ -22,6 +20,7 @@ public class main {
     static JLabel title;
     static JButton openfile;
     static JButton convertbtn;
+    static JButton decodebtn;
     static JButton copybtn;
     static JTextField inputfield;
     static JTextField outputfield;
@@ -44,9 +43,6 @@ public class main {
         title = new JLabel("Simple Java Encoder");
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 40));
         title.setBounds(125, 10, 1000, 50);
-
-    //    JOptionPane option = new JOptionPane();
-
     
         inputfield = new JTextField();
         inputfield.setBounds(50, 100, 200, 200);        
@@ -63,11 +59,16 @@ public class main {
         
 
 
-        convertbtn = new JButton("Convert");
+        convertbtn = new JButton("Encode");
         convertbtn.setPreferredSize(new Dimension(100, 100));
-        convertbtn.setBounds(290, 175, 75, 50);
+        convertbtn.setBounds(290, 225, 75, 50);
         convertbtn.setFont(new Font(convertbtn.getFont().getName(), Font.BOLD, 10));
     
+
+        decodebtn = new JButton("Decode");
+        decodebtn.setPreferredSize(new Dimension(100, 100));
+        decodebtn.setBounds(290, 125, 75, 50);
+        decodebtn.setFont(new Font(decodebtn.getFont().getName(), Font.BOLD, 10));
 
         outputfield = new JTextField();
 
@@ -82,15 +83,24 @@ public class main {
 
         convertbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                convertText(inputfield.getText());
+                encodeText(inputfield.getText());
             }
         });
 
+        decodebtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+            }
+        });
+
+       
         copybtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 copytoclipboard(outputfield.getText());
             }
         });
+
+
         //Adding Window Features
         frame.add(window);
         window.add(title);
@@ -98,16 +108,10 @@ public class main {
         window.add(inputfield);
         window.add(outputfield);
         window.add(convertbtn);
+        window.add(decodebtn);
         window.add(copybtn);
         window.add(dropdownmenu);
 
-       
-    //    frame.add(option);
-
-
-
-
-        
         frame.pack();
         frame.setVisible(true);
 
@@ -117,50 +121,55 @@ public class main {
     static void openFileChooser()
     {
         JFileChooser filechooser = new JFileChooser();
+        int choice = filechooser.showOpenDialog(filechooser);
 
-        JFrame filewindow = new JFrame();
-        
-       // filewindow.setPreferredSize(new Dimension(640, 480));
-       // filewindow.setLayout(null);
+       
+        filechooser.cancelSelection();
+    
 
-        filewindow.add(filechooser); 
-        filewindow.pack();
-        filewindow.setVisible(true);
+        //JFrame filewindow = new JFrame();
+//
+       //
+    //
+        //filewindow.add(filechooser); 
+        //filewindow.pack();
+        //filewindow.setVisible(true);
         System.out.println("File Chooser Opened");
+
+        if (choice == filechooser.OPEN_DIALOG)
+        {
+            System.out.println("Opening File...");
+            System.out.println(filechooser.getSelectedFile());
+            try
+            {
+                inputfield.setText(Files.readString(filechooser.getSelectedFile().toPath()));
+            }
+            catch (IOException e)
+            {
+
+            }
+          
+     
+           
+         //   filewindow.dispose();
+        }
     }
 
-    static void convertText(String text)
+    static void encodeText(String text)
     {
         outputfield.setText("");
         String selectedchoice = String.valueOf(dropdownmenu.getSelectedItem());
-/*
-    
-            if (selectedchoice == "Base64")
-            {
-            System.out.println("String: " + text +  "\n" + "Output: " + Base64.getEncoder().encodeToString(text.getBytes()) + "\n" + "Encoder: " + selectedchoice);
-            outputfield.setText(Base64.getEncoder().encodeToString(text.getBytes()));
-               }
-            else if (selectedchoice == "Decimal ASCII")
-            {
-            System.out.println("String: " + text +  "\n" + "Output: " + text.chars().boxed().collect(Collectors.toList()) + "\n" + "Encoder: " + selectedchoice);
-            outputfield.setText("" + text.chars().boxed().collect(Collectors.toList()));
-        }
-        */
+
         switch (selectedchoice) 
         {
             case "Base64":
-                String base64 = Base64.getEncoder().encodeToString(text.getBytes());
-                System.out.println("String: " + text +  "\n" + "Output: " + base64 + "\n" + "Encoder: " + selectedchoice);
-                outputfield.setText(base64);
+                Encoder.Base64(text);
                 break;
             case "Decimal ASCII":
-            int[] asciiarray = new int[text.length()];
-            for (int i = 0; i < text.length(); i++) {
-                var getChar = (text.charAt(i));
-                var asciioutput = (int) getChar;
-                asciiarray[i] = asciioutput;
-                outputfield.setText(outputfield.getText() + " " + asciiarray[i]);
-            }               
+                Encoder.DAscii(text);
+            case "Binary":
+                String ascii = Encoder.DAscii(text);
+
             /*
               int[] ascii = new int[text.length()];
                 for (byte textbyte : text.getBytes()) {
@@ -186,5 +195,10 @@ public class main {
         StringSelection stringSelection = new StringSelection(text);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
+    }
+
+    public static void setOutput(String output)
+    {
+        outputfield.setText(output);
     }
 }
