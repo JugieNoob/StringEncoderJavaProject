@@ -13,4 +13,19 @@ public class Decoder {
         outputInfo(text, output, "Base64");
     }
     
+
+    public static void Reverse(String text)
+    {
+        var output = "";
+        for (int i = 0; i < text.length(); i++)
+        {
+            char getChar = text.charAt(i);
+            output =  getChar + output;
+        }
+        main.setOutput(main.outputfield.getText() + "" + output);
+
+        outputInfo(text, main.outputfield.getText(), "Reverse");
+
+    }
+    
 }

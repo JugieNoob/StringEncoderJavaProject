@@ -4,8 +4,7 @@ import java.awt.event.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
 import java.nio.file.Files;
-import java.io.IOException;
-
+import java.io.*;
 
 
 
@@ -25,7 +24,7 @@ public class main {
     static JTextField inputfield;
     static JTextField outputfield;
     static JComboBox<String> dropdownmenu;
-    static String[] choices = {"Base64",  "Decimal ASCII", "Binary"};
+    static String[] choices = {"Base64",  "Decimal ASCII", "Binary", "Caesar Cipher", "Reverse"};
 
     static void makeWindow()
     {
@@ -89,7 +88,7 @@ public class main {
 
         decodebtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+                decodeText(inputfield.getText());
             }
         });
 
@@ -168,26 +167,33 @@ public class main {
             case "Decimal ASCII":
                 Encoder.DAscii(text);
             case "Binary":
-                String ascii = Encoder.DAscii(text);
-
-            /*
-              int[] ascii = new int[text.length()];
-                for (byte textbyte : text.getBytes()) {
-                    int value = textbyte;
-                    System.out.println(text.length());
-                    for (int i = 0; i < text.length(); i++) 
-                    {
-                        ascii[i] = value;
-                        break;
-                    }
-                }
-                System.out.println(ascii);
-                break;
-       */
+                Encoder.Binary(text);
+            case "Caesar Cipher":
+                Encoder.CaesarCipher(text);
+            case "Reverse":
+                Encoder.Reverse(text);
         }
+    }
 
-           
-        
+    static void decodeText(String text)
+    {
+        outputfield.setText("");
+        String selectedchoice = String.valueOf(dropdownmenu.getSelectedItem());
+
+        switch (selectedchoice) 
+        {
+            case "Base64":
+                Decoder.Base64(text);
+                break;
+            case "Decimal ASCII":
+                //Decoder.DAscii(text);
+            case "Binary":
+                //Decoder.Binary(text);
+            case "Caesar Cipher":
+               // Decoder.CaesarCipher(text);
+            case "Reverse":
+                Decoder.Reverse(text);
+        }
     }
 
     static void copytoclipboard(String text)
@@ -201,4 +207,7 @@ public class main {
     {
         outputfield.setText(output);
     }
+
+
 }
+
