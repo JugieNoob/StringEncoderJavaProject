@@ -3,21 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Clipboard;
-import java.nio.file.Files;
-import java.io.*;
-
-
-
 
 public class main {
-    
-    public static void main(String[] args) throws Exception {
-       makeWindow();
-    }
 
-    static JFrame frame;
+    static JFrame window;
+    static JPanel panel;
     static JLabel title;
     static JButton openfile;
+    static JButton savefile;
     static JButton convertbtn;
     static JButton decodebtn;
     static JButton copybtn;
@@ -25,17 +18,22 @@ public class main {
     static JTextField outputfield;
     static JComboBox<String> dropdownmenu;
     static String[] choices = {"Base64",  "Decimal ASCII", "Binary", "Caesar Cipher", "Reverse"};
+    static JButton infobutton;
 
+    public static void main(String[] args) throws Exception {
+       makeWindow();
+    }
+
+  
     static void makeWindow()
     {
-        JPanel window = new JPanel();
-        window.setPreferredSize(new Dimension(640, 480));
-        //window.setBackground(Color.CYAN); Changes the color of the background
-        window.setLayout(null);
+        panel = new JPanel();
+        panel.setPreferredSize(new Dimension(640, 480));
+        panel.setLayout(null);
 
-        frame = new JFrame("Simple Java Encoder");
-        frame.setResizable(false);
-       
+        window = new JFrame("Simple Java Encoder");
+        window.setResizable(false);
+        
         dropdownmenu = new JComboBox<String>(choices);
         dropdownmenu.setBounds(50, 65,200, 25);
         
@@ -44,19 +42,25 @@ public class main {
         title.setBounds(125, 10, 1000, 50);
     
         inputfield = new JTextField();
-        inputfield.setBounds(50, 100, 200, 200);        
+        inputfield.setBounds(50, 100, 200, 200);
 
-    
         openfile = new JButton("Get Text From File");
         openfile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                openFileChooser();
+                FileChooser.openFileChooser();
             }
         });
         openfile.setPreferredSize(new Dimension(100, 100));
         openfile.setBounds(145 - 70, 325, 140, 35);
-        
 
+        savefile = new JButton("Save Text To File");
+        savefile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FileChooser.saveFileChooser();
+            }
+        });
+        savefile.setPreferredSize(new Dimension(100, 100));
+        savefile.setBounds(500 - 70, 375, 140, 35);
 
         convertbtn = new JButton("Encode");
         convertbtn.setPreferredSize(new Dimension(100, 100));
@@ -78,8 +82,15 @@ public class main {
         copybtn.setPreferredSize(new Dimension(100, 100));
         copybtn.setBounds(500 - 70, 325, 140, 35);
 
-
-
+        infobutton = new JButton("?");
+        infobutton.setBounds(640 - 45, 480 - 45, 45, 45);
+        infobutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Info.infoMenu();
+            }
+        });
+        
+  
         convertbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 encodeText(inputfield.getText());
@@ -101,58 +112,21 @@ public class main {
 
 
         //Adding Window Features
-        frame.add(window);
-        window.add(title);
-        window.add(openfile);
-        window.add(inputfield);
-        window.add(outputfield);
-        window.add(convertbtn);
-        window.add(decodebtn);
-        window.add(copybtn);
-        window.add(dropdownmenu);
+        window.add(panel);
+        panel.add(title);
+        panel.add(openfile);
+        panel.add(savefile);
+        panel.add(inputfield);
+        panel.add(outputfield);
+        panel.add(convertbtn);
+        panel.add(decodebtn);
+        panel.add(copybtn);
+        panel.add(dropdownmenu);
+        panel.add(infobutton);
 
-        frame.pack();
-        frame.setVisible(true);
-
-        System.out.println("Added Window");
+        window.pack();
+        window.setVisible(true);
     } 
-
-    static void openFileChooser()
-    {
-        JFileChooser filechooser = new JFileChooser();
-        int choice = filechooser.showOpenDialog(filechooser);
-
-       
-        filechooser.cancelSelection();
-    
-
-        //JFrame filewindow = new JFrame();
-//
-       //
-    //
-        //filewindow.add(filechooser); 
-        //filewindow.pack();
-        //filewindow.setVisible(true);
-        System.out.println("File Chooser Opened");
-
-        if (choice == filechooser.OPEN_DIALOG)
-        {
-            System.out.println("Opening File...");
-            System.out.println(filechooser.getSelectedFile());
-            try
-            {
-                inputfield.setText(Files.readString(filechooser.getSelectedFile().toPath()));
-            }
-            catch (IOException e)
-            {
-
-            }
-          
-     
-           
-         //   filewindow.dispose();
-        }
-    }
 
     static void encodeText(String text)
     {
@@ -166,12 +140,16 @@ public class main {
                 break;
             case "Decimal ASCII":
                 Encoder.DAscii(text);
+                break;
             case "Binary":
                 Encoder.Binary(text);
+                break;
             case "Caesar Cipher":
                 Encoder.CaesarCipher(text);
+                break;
             case "Reverse":
                 Encoder.Reverse(text);
+                break;
         }
     }
 
@@ -186,13 +164,17 @@ public class main {
                 Decoder.Base64(text);
                 break;
             case "Decimal ASCII":
-                //Decoder.DAscii(text);
+                Decoder.DAscii(text);
+                break;
             case "Binary":
-                //Decoder.Binary(text);
+                Decoder.Binary(text);
+                break;
             case "Caesar Cipher":
-               // Decoder.CaesarCipher(text);
+                Decoder.CaesarCipher(text);
+                break;
             case "Reverse":
                 Decoder.Reverse(text);
+                break;
         }
     }
 

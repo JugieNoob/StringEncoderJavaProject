@@ -2,12 +2,13 @@ import java.util.Base64;
 
 public class Encoder {
 
+    static String output = "";
     static void outputInfo(String input, String output, String encoder){
         System.out.println("String: " + input +  "\n" + "Output: " + output + "\n" + "Encoder: " + encoder);
     }
 
     public static void Base64(String text){
-        String output = Base64.getEncoder().encodeToString(text.getBytes());
+        output = Base64.getEncoder().encodeToString(text.getBytes());
         main.setOutput(output);
         outputInfo(text, output, "Base64");
 
@@ -30,21 +31,17 @@ public class Encoder {
             for (int i = 0; i < text.length(); i++) {
                 var getChar = (text.charAt(i));
                 asciiarray[i] = getChar;  
-            }  
-        
-        for (int i = 0; i < text.length(); i++)
-        {
-            
-            for (int j = 0; j < 8; j++)
-            {
-                System.out.println(text.charAt(j) % 8);
-            }
-        }
+                System.out.println(Integer.toOctalString(text.charAt(i)));
+                output = Integer.toBinaryString(text.charAt(i));
+                main.setOutput(main.outputfield.getText() + output + " " );
+
+            } 
+            outputInfo(text, main.outputfield.getText(), "Binary");
    }
    public static void CaesarCipher(String text)
    {
         //Converting variable text to a Caesar Cipher Version
-        String output = "";
+        output = "";
             for (int i = 0; i < text.length(); i++) {
                 char getChar = (text.charAt(i));  
                 getChar += 1; 
@@ -65,7 +62,7 @@ public class Encoder {
         }
      public static void Reverse(String text)
     {
-        var output = "";
+        output = "";
         for (int i = 0; i < text.length(); i++)
         {
             char getChar = text.charAt(i);
@@ -74,7 +71,6 @@ public class Encoder {
         main.setOutput(main.outputfield.getText() + "" + output);
 
         outputInfo(text, main.outputfield.getText(), "Reverse");
-
     }
     
 }
