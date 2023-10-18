@@ -90,10 +90,11 @@ public class main {
             }
         });
         
+        
   
         convertbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                encodeText(inputfield.getText());
+                encodeText(inputfield.getText().trim());
             }
         });
 

@@ -49,17 +49,19 @@ public class FileChooser {
          
            try
            {
+            //Makes a file or overrides a file with the given name in the filechooser
             Path path = filechooser.getSelectedFile().toPath();
-            File file = new File(path.toString() + ".txt");//filechooser.getCurrentDirectory().toString() + "/" + file.getName() + ".txt");    //
+            File file = new File(path.toString() + ".txt");
             file.createNewFile();
             System.out.println("MADE NEW FILE: " + file.getName());
             System.out.println(filechooser.getCurrentDirectory().toString());
             
-          //  Path path = Paths.get(filePath);
-           BufferedWriter writer = null;
-            writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND); //else appends to already existing file
-                writer.write(main.outputfield.getText());
-                writer.newLine();
+            //Writes to the file
+            
+            BufferedWriter writer = null;
+            writer = Files.newBufferedWriter(file.toPath(), StandardOpenOption.APPEND);
+            writer.write(main.outputfield.getText());
+            writer.newLine();
              
             writer.close();
            }
@@ -70,5 +72,8 @@ public class FileChooser {
         }
         }
            }
+        
         }
+
+    
 

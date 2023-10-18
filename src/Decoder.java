@@ -11,7 +11,7 @@ public class Decoder {
 
     public static void Base64(String text)
     {
-        String output = new String(Base64.getDecoder().decode(text));
+        output = new String(Base64.getDecoder().decode(text));
         main.setOutput(output);
         outputInfo(text, output, "Base64");
     }

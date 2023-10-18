@@ -32,8 +32,9 @@ public class Encoder {
                 var getChar = (text.charAt(i));
                 asciiarray[i] = getChar;  
                 System.out.println(Integer.toOctalString(text.charAt(i)));
-                output = Integer.toBinaryString(text.charAt(i));
-                main.setOutput(main.outputfield.getText() + output + " " );
+                output = main.outputfield.getText() + Integer.toBinaryString(text.charAt(i)) + " ";
+                output.trim();
+                main.setOutput(output);
 
             } 
             outputInfo(text, main.outputfield.getText(), "Binary");
