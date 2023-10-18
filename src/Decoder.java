@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Base64;
 
 public class Decoder {
@@ -22,8 +23,18 @@ public class Decoder {
     public static void Binary(String text)
     {
     //  TODO
-       //int bintodec = Integer.parseInt(text, 2);
+        
+       //
        //char dectostring = (char)bintodec;
+       // System.out.println(bintodec);
+        String[] binaryarray = text.split(" ", 8);
+        for (int i = 0; i < binaryarray.length; i++)
+        {
+            int bintodec = Integer.parseInt(binaryarray[i], 2);
+            char dectostring = (char)bintodec;
+            System.out.println(dectostring);
+        }
+
        //main.setOutput("" + dectostring);
       //  outputInfo(text, dectostr, "Binary");
     }
