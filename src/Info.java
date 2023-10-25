@@ -11,7 +11,7 @@ public class Info {
     public static void infoMenu()
     {
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(320, 240));
+        panel.setPreferredSize(new Dimension(330, 240));
         panel.setLayout(null);
 
         window = new JFrame("Information");

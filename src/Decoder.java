@@ -22,21 +22,17 @@ public class Decoder {
 
     public static void Binary(String text)
     {
-    //  TODO
-        
-       //
-       //char dectostring = (char)bintodec;
-       // System.out.println(bintodec);
-        String[] binaryarray = text.split(" ", 8);
+        String[] binaryarray = text.trim().split(" ");
         for (int i = 0; i < binaryarray.length; i++)
         {
-            int bintodec = Integer.parseInt(binaryarray[i], 2);
+            int bintodec = Integer.valueOf(binaryarray[i], 2);
             char dectostring = (char)bintodec;
             System.out.println(dectostring);
+            output = main.outputfield.getText() + dectostring;
+            output.trim();
+            main.setOutput(output);
         }
-
-       //main.setOutput("" + dectostring);
-      //  outputInfo(text, dectostr, "Binary");
+       
     }
 
     public static void CaesarCipher(String text)
