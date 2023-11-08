@@ -1,3 +1,8 @@
+## TODO
+
+- Add Comments
+- Code Cleanup
+
 # Java Encoder/Decoder
 
 A simple project I made for my computing project, it takes strings and converts them to whatever encoder i've added.
@@ -8,3 +13,4 @@ A simple project I made for my computing project, it takes strings and converts 
 
 ## We cookin'
 Added a simple little (not at all) batch script that'll push stuff to the repo!! (pretty cool)
+
