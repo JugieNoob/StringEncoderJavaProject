@@ -18,6 +18,15 @@ public class Decoder {
 
     public static void DAscii(String text)
     {
+        String[] asciiarray = text.trim().split(" ");
+        for (int i = 0; i < asciiarray.length; i++)
+        {
+            char dectostring = (char)Integer.parseInt(asciiarray[i]);
+            System.out.println(dectostring);
+            output = main.outputfield.getText() + dectostring;
+            output.trim();
+            main.setOutput(output);
+        }
     }
 
     public static void Binary(String text)

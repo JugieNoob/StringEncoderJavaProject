@@ -19,7 +19,8 @@ public class Encoder {
             for (int i = 0; i < text.length(); i++) {
                 var getChar = (text.charAt(i));
                 asciiarray[i] = getChar;
-                main.setOutput(main.outputfield.getText() + " " + asciiarray[i]);
+                output = (main.outputfield.getText() + " " + asciiarray[i]).trim();
+                main.setOutput(output);
             }  
          outputInfo(text, main.outputfield.getText(), "Decimal ASCII");
         }
@@ -32,8 +33,7 @@ public class Encoder {
                 var getChar = (text.charAt(i));
                 asciiarray[i] = getChar;  
                 System.out.println(Integer.toOctalString(text.charAt(i)));
-                output = main.outputfield.getText() + Integer.toBinaryString(text.charAt(i)) + " ";
-                output.trim();
+                output = (main.outputfield.getText() + Integer.toBinaryString(text.charAt(i)) + " ").trim();;
                 main.setOutput(output);
 
             } 
