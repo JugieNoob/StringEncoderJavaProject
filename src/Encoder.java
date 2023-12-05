@@ -7,12 +7,16 @@ public class Encoder {
         System.out.println("String: " + input +  "\n" + "Output: " + output + "\n" + "Encoder: " + encoder);
     }
 
+    // Conveting a string to Base64
+
     public static void Base64(String text){
         output = Base64.getEncoder().encodeToString(text.getBytes());
         main.setOutput(output);
         outputInfo(text, output, "Base64");
 
     }
+
+    // Converting a string to Decimal ASCII
 
     public static void DAscii(String text){ 
         int[] asciiarray = new int[text.length()];
@@ -25,23 +29,27 @@ public class Encoder {
          outputInfo(text, main.outputfield.getText(), "Decimal ASCII");
         }
 
+    // Converting a string to Binary ASCII
+
     public static void Binary(String text)
     {
-        //Converting variable text to Decimal ASCII
+        
         int[] asciiarray = new int[text.length()];
             for (int i = 0; i < text.length(); i++) {
                 var getChar = (text.charAt(i));
                 asciiarray[i] = getChar;  
-                System.out.println(Integer.toOctalString(text.charAt(i)));
-                output = (main.outputfield.getText() + Integer.toBinaryString(text.charAt(i)) + " ").trim();;
+
+                output = (main.outputfield.getText() + Integer.toBinaryString(text.charAt(i)) + " ");
                 main.setOutput(output);
 
             } 
             outputInfo(text, main.outputfield.getText(), "Binary");
    }
+
+   // Encodes a string using the Caesar Cipher
+
    public static void CaesarCipher(String text)
    {
-        //Converting variable text to a Caesar Cipher Version
         output = "";
             for (int i = 0; i < text.length(); i++) {
                 char getChar = (text.charAt(i));  
@@ -61,7 +69,10 @@ public class Encoder {
             }  
             outputInfo(text, main.outputfield.getText(), "Caesar Chipher");
         }
-     public static void Reverse(String text)
+
+    // Reverses the string and outputs the value.
+
+    public static void Reverse(String text)
     {
         output = "";
         for (int i = 0; i < text.length(); i++)

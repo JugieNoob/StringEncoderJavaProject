@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Base64;
 
 public class Decoder {
@@ -9,12 +8,17 @@ public class Decoder {
         System.out.println("String: " + input +  "\n" + "Output: " + output + "\n" + "Encoder: " + encoder);
     }
 
+    // Conveting Base64 to a string
+
     public static void Base64(String text)
     {
         output = new String(Base64.getDecoder().decode(text));
         main.setOutput(output);
         outputInfo(text, output, "Base64");
     }
+
+
+    // Converting Decimal ASCII to a string 
 
     public static void DAscii(String text)
     {
@@ -28,6 +32,8 @@ public class Decoder {
             main.setOutput(output);
         }
     }
+
+    // Converting Binary ASCII to a string 
 
     public static void Binary(String text)
     {
@@ -43,6 +49,8 @@ public class Decoder {
         }
        
     }
+
+    // Decodes a string using the Caesar Cipher
 
     public static void CaesarCipher(String text)
     {
@@ -66,6 +74,7 @@ public class Decoder {
             outputInfo(text, main.outputfield.getText(), "Caesar Chipher");
     }
     
+    // Reverses the string and outputs the value.
 
     public static void Reverse(String text)
     {
