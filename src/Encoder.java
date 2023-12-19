@@ -4,7 +4,7 @@ public class Encoder {
 
     static String output = "";
     static void outputInfo(String input, String output, String encoder){
-        System.out.println("String: " + input +  "\n" + "Output: " + output + "\n" + "Encoder: " + encoder);
+        System.out.println("String: " + input + " ---" + encoder + "---> Output: " + output + "\n");
     }
 
     // Conveting a string to Base64

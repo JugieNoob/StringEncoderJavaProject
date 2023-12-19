@@ -1,8 +1,3 @@
-## TODO
-
-- Add Comments
-- Code Cleanup
-
 # Java Encoder/Decoder
 
 A simple project I made for my computing project, it takes strings and converts them to whatever encoder i've added.

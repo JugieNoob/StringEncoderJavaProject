@@ -106,7 +106,7 @@ public class main {
         infobutton.setBounds(640 - 45, 480 - 45, 45, 45);
         infobutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Info.infoMenu();
+                //Info.infoMenu();
             }
         });
 
