@@ -4,6 +4,8 @@ public class Decoder {
 
     static String output = "";
 
+    // Outputting information about the decoder to the console.
+
     static void outputInfo(String input, String output, String encoder){
         System.out.println("String: " + input +  "\n" + "Output: " + output + "\n" + "Encoder: " + encoder);
     }

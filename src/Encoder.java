@@ -3,6 +3,9 @@ import java.util.Base64;
 public class Encoder {
 
     static String output = "";
+
+    // Outputting information about the encoder to the console.
+
     static void outputInfo(String input, String output, String encoder){
         System.out.println("String: " + input + " ---" + encoder + "---> Output: " + output + "\n");
     }
