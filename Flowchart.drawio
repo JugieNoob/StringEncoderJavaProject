@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" modified="2024-01-20T21:45:40.234Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0" etag="rAbynJndj87fCkn4E_u8" version="22.1.21" type="device">
+  <diagram name="Page-1" id="WCJ2Mj0zXInQiujwe4LX">
+    <mxGraphModel dx="1687" dy="878" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-1" target="ONZpi1p6eVOtaz8gOTrK-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-1" value="START" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-4" value="Draw main window with user interface" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-9" target="ONZpi1p6eVOtaz8gOTrK-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-9" value="&lt;div&gt;Enter input into&amp;nbsp;&lt;/div&gt;&lt;div&gt;the input field&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-4" target="ONZpi1p6eVOtaz8gOTrK-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414.16666666666674" y="359.9999999999999" as="targetPoint" />
+            <mxPoint x="414" y="310" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-11" target="ONZpi1p6eVOtaz8gOTrK-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-11" value="&lt;div&gt;Select encoder/decoder&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-17" target="ONZpi1p6eVOtaz8gOTrK-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="617.1666666666667" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-17" target="ONZpi1p6eVOtaz8gOTrK-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-17" value="&lt;div&gt;Did user press endode&lt;/div&gt;&lt;div&gt;&amp;nbsp;or decode?&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="357" y="550" width="114" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-20" target="ONZpi1p6eVOtaz8gOTrK-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-20" value="Get encoder and encode the input" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-21" value="Display encoded output" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ONZpi1p6eVOtaz8gOTrK-24" target="ONZpi1p6eVOtaz8gOTrK-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-24" value="Get decoder and decode the input" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ONZpi1p6eVOtaz8gOTrK-25" value="Display decoded output" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="550" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
